@@ -32,7 +32,12 @@ export default function AdminLogin() {
       navigate(`/admin/dashboard/${session.code}`)
     } catch (err) {
       console.error(err)
-      const detail = err instanceof Error ? err.message : String(err)
+      const detail =
+        err instanceof Error
+          ? err.message
+          : typeof err === 'object' && err !== null && 'message' in err
+            ? String((err as { message: unknown }).message)
+            : String(err)
       setError(`Não foi possível criar a sessão (${detail}). Confira o README na seção "Solução de problemas".`)
       setLoading(false)
     }
