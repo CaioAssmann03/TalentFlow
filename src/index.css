@@ -1,0 +1,65 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Space Grotesk", "Inter", sans-serif;
+  --font-body: "Inter", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+
+  --color-ink-950: #0a0e17;
+  --color-ink-900: #0f1420;
+  --color-ink-800: #161d2e;
+  --color-ink-700: #1f2940;
+  --color-ink-600: #2c3958;
+  --color-mist-400: #8892a8;
+  --color-mist-300: #aab3c7;
+  --color-mist-100: #e7eaf2;
+  --color-cyan-400: #35e0d0;
+  --color-cyan-500: #17c3b2;
+  --color-signal-red: #ef5757;
+  --color-signal-green: #35c281;
+  --color-signal-amber: #f2b544;
+}
+
+html {
+  background: var(--color-ink-950);
+}
+
+html, body {
+  overflow-x: hidden;
+  width: 100%;
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--color-ink-950);
+  color: var(--color-mist-100);
+  -webkit-font-smoothing: antialiased;
+  padding-top: env(safe-area-inset-top);
+  padding-bottom: env(safe-area-inset-bottom);
+  padding-left: env(safe-area-inset-left);
+  padding-right: env(safe-area-inset-right);
+}
+
+/* iOS Safari zooms the page in when a focused input/select/textarea has a
+   font-size under 16px. Force a 16px floor on all form fields so focusing
+   any field during the live game never triggers an unwanted zoom. */
+input, select, textarea {
+  font-size: max(16px, 1rem);
+}
+
+::selection {
+  background: var(--color-cyan-500);
+  color: var(--color-ink-950);
+}
+
+@keyframes rise {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-rise { animation: rise 0.45s cubic-bezier(0.16,1,0.3,1) both; }
+
+@keyframes scan {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100%); }
+}
+.animate-scan { animation: scan 2.4s linear infinite; }
