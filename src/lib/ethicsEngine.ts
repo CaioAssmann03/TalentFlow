@@ -92,10 +92,12 @@ export function generateEthicsCode(votes: Vote[]): EthicsArticleResult[] {
       ? Math.round(relevantScores.reduce((a, b) => a + b, 0) / relevantScores.length)
       : 0
     const strength: EthicsArticleResult['strength'] = avg >= 60 ? 'forte' : avg >= 35 ? 'moderado' : 'fraco'
+    const text =
+      strength === 'forte' ? article.strongText : strength === 'moderado' ? article.moderateText : article.weakText
     return {
       number: article.number,
       title: article.title,
-      text: strength === 'fraco' ? article.weakText : article.strongText,
+      text,
       strength,
       avgScore: avg,
     }
@@ -109,9 +111,32 @@ export function topValues(scores: Record<EthicalValue, number>, n = 4) {
     .map(([value, score]) => ({ value, score, label: VALUE_LABELS[value] }))
 }
 
+/**
+ * How many times each value was offered as an option across all dilemmas,
+ * regardless of votes. Used to break ties among values that scored 0: a
+ * value the turma could have picked often but never did was more
+ * meaningfully "sacrificed" than one that was barely on the table.
+ */
+function computeValueOpportunity(): Record<EthicalValue, number> {
+  const opportunity: Partial<Record<EthicalValue, number>> = {}
+  for (const dilemma of DILEMMAS) {
+    for (const option of dilemma.options) {
+      for (const value of option.values) {
+        opportunity[value] = (opportunity[value] || 0) + 1
+      }
+    }
+  }
+  const result = {} as Record<EthicalValue, number>
+  for (const value of Object.keys(VALUE_LABELS) as EthicalValue[]) {
+    result[value] = opportunity[value] || 0
+  }
+  return result
+}
+
 export function bottomValues(scores: Record<EthicalValue, number>, n = 3) {
+  const opportunity = computeValueOpportunity()
   return (Object.entries(scores) as [EthicalValue, number][])
-    .sort((a, b) => a[1] - b[1])
+    .sort((a, b) => a[1] - b[1] || opportunity[b[0]] - opportunity[a[0]])
     .slice(0, n)
     .map(([value, score]) => ({ value, score, label: VALUE_LABELS[value] }))
 }
