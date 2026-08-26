@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import { ArrowRight, ShieldCheck, Users, FileSearch } from 'lucide-react'
-import { Wordmark, PrimaryButton, SecondaryButton, Card, Pill } from '../components/ui'
+import { Wordmark, PrimaryButton, SecondaryButton, Card } from '../components/ui'
 
 export default function Landing() {
   return (
@@ -20,8 +20,7 @@ export default function Landing() {
       </header>
 
       <main className="relative z-10 max-w-3xl mx-auto px-6 pt-20 pb-16 text-center animate-rise">
-        <Pill tone="cyan">Simulação: TalentFlow / HireLens</Pill>
-        <h1 className="mt-6 font-[var(--font-display)] text-4xl md:text-6xl font-semibold leading-[1.05] tracking-tight text-mist-100">
+        <h1 className="font-[var(--font-display)] text-4xl md:text-6xl font-semibold leading-[1.05] tracking-tight text-mist-100">
           Você deixaria uma <span className="text-cyan-400">IA</span> decidir
           <br /> quem merece uma oportunidade?
         </h1>
