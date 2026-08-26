@@ -86,6 +86,26 @@ export function getMostContestedDilemma(votes: Vote[]): Dilemma {
   return best
 }
 
+/**
+ * Short narrative for what the turma just decided on a single dilemma,
+ * meant to be shown right when the admin reveals its result — before
+ * moving on to the next one.
+ */
+export function describeDilemmaResult(dilemma: Dilemma, tally: DilemmaTally): string {
+  if (tally.totalVotes === 0) return 'Ninguém votou neste dilema.'
+
+  const winner = getWinningOption(dilemma, tally)
+  const pct = tally.perOptionPct[winner.id]
+  const sortedPct = dilemma.options.map((o) => tally.perOptionPct[o.id]).sort((a, b) => b - a)
+  const runnerUpPct = sortedPct[1] || 0
+  const margin = pct - runnerUpPct
+
+  const closeness = margin <= 10 && runnerUpPct > 0 ? 'com a turma dividida' : pct >= 70 ? 'em ampla maioria' : 'pela maioria'
+  const valueLabels = winner.values.map((v) => VALUE_LABELS[v]).join(', ')
+
+  return `A turma decidiu ${closeness} (${pct}% dos votos): "${winner.label}" Essa escolha prioriza ${valueLabels}.`
+}
+
 export function generatePrinciples(votes: Vote[]): GeneratedPrinciple[] {
   return DILEMMAS.map((dilemma) => {
     const tally = tallyDilemma(dilemma, votes)
@@ -172,6 +192,7 @@ export function bottomValues(scores: Record<EthicalValue, number>, n = 3) {
 export function buildFinalVerdict(votes: Vote[]): string {
   const scores = computeValueScores(votes)
   const top = topValues(scores, 3)
+  const bottom = bottomValues(scores, 1)
   const automationScore = scores.automacao || 0
   const supervisionScore = scores.supervisao_humana || 0
 
@@ -188,5 +209,10 @@ export function buildFinalVerdict(votes: Vote[]): string {
   }
 
   const topLabels = top.map((t) => VALUE_LABELS[t.value]).join(', ')
-  return `${stance} Os valores mais priorizados pela turma foram: ${topLabels}.`
+  const sacrifice =
+    bottom.length && bottom[0].score < 40
+      ? ` Em contrapartida, ${VALUE_LABELS[bottom[0].value].toLowerCase()} foi o valor menos priorizado pela turma ao longo dos 6 dilemas.`
+      : ''
+
+  return `${stance} Os valores mais priorizados pela turma foram: ${topLabels}.${sacrifice}`
 }

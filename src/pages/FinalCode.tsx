@@ -109,10 +109,7 @@ export default function FinalCode() {
                 <div className="flex items-start gap-4">
                   <span className="font-[var(--font-mono)] text-xs text-cyan-400 mt-0.5">{a.number}</span>
                   <div className="flex-1">
-                    <div className="flex items-center gap-2 mb-1">
-                      <h4 className="font-semibold text-mist-100">{a.title}</h4>
-                      <StrengthPill strength={a.strength} />
-                    </div>
+                    <h4 className="font-semibold text-mist-100 mb-1">{a.title}</h4>
                     <p className="text-sm text-mist-300 leading-relaxed">{a.text}</p>
                   </div>
                 </div>
@@ -150,11 +147,6 @@ export default function FinalCode() {
       </main>
     </div>
   )
-}
-
-function StrengthPill({ strength }: { strength: 'forte' | 'moderado' | 'fraco' }) {
-  const tone = strength === 'forte' ? 'green' : strength === 'moderado' ? 'amber' : 'red'
-  return <Pill tone={tone as 'green' | 'amber' | 'red'}>{strength}</Pill>
 }
 
 function NotFoundScreen() {
