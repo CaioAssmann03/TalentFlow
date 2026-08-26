@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useParams, Link } from 'react-router-dom'
-import { ScrollText, Swords, Download } from 'lucide-react'
+import { ScrollText, Swords } from 'lucide-react'
 import { Wordmark, Card, Pill, LoadingScreen, ValueBar, SecondaryButton } from '../components/ui'
 import type { GameSession, Vote } from '../types'
 import { getSessionByCode, getVotesForSession } from '../lib/db'
@@ -49,22 +49,14 @@ export default function FinalCode() {
 
   return (
     <div className="min-h-screen bg-ink-950">
-      <header className="no-print max-w-3xl mx-auto px-6 pt-8 flex items-center justify-between">
+      <header className="max-w-3xl mx-auto px-6 pt-8 flex items-center justify-between">
         <Wordmark size="sm" />
-        <div className="flex items-center gap-4">
-          <button
-            onClick={() => window.print()}
-            className="inline-flex items-center gap-1.5 text-sm text-mist-400 hover:text-cyan-400"
-          >
-            <Download size={15} /> Salvar como PDF
-          </button>
-          <Link to="/" className="text-sm text-mist-400 hover:text-cyan-400">
-            Início
-          </Link>
-        </div>
+        <Link to="/" className="text-sm text-mist-400 hover:text-cyan-400">
+          Início
+        </Link>
       </header>
 
-      <main className="print-area max-w-3xl mx-auto px-6 py-10">
+      <main className="max-w-3xl mx-auto px-6 py-10">
         <div className="text-center animate-rise">
           <Pill tone="cyan">A turma decidiu</Pill>
           <h1 className="mt-4 font-[var(--font-display)] text-3xl md:text-4xl font-semibold text-mist-100">
@@ -146,7 +138,7 @@ export default function FinalCode() {
             "Não buscamos uma IA que nunca erre. Buscamos uma IA que possa ser auditada, questionada e impedida de
             transformar um possível erro em uma decisão definitiva."
           </p>
-          <div className="no-print mt-6 flex justify-center gap-3">
+          <div className="mt-6 flex justify-center gap-3">
             <Link to="/auditoria">
               <SecondaryButton>Testar o HireLens</SecondaryButton>
             </Link>
