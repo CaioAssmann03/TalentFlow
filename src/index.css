@@ -63,22 +63,3 @@ input, select, textarea {
   100% { transform: translateY(100%); }
 }
 .animate-scan { animation: scan 2.4s linear infinite; }
-
-/* Print / "salvar como PDF" support: the app is dark-themed, but printing
-   a dark background wastes ink and light text disappears on paper, so we
-   force a plain light rendering for the printed area only. */
-@media print {
-  .no-print { display: none !important; }
-
-  body {
-    background: #ffffff !important;
-  }
-
-  .print-area, .print-area * {
-    background: transparent !important;
-    color: #111827 !important;
-    border-color: #d1d5db !important;
-    box-shadow: none !important;
-    animation: none !important;
-  }
-}
