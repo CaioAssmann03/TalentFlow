@@ -103,7 +103,7 @@ export function describeDilemmaResult(dilemma: Dilemma, tally: DilemmaTally): st
   const closeness = margin <= 10 && runnerUpPct > 0 ? 'com a turma dividida' : pct >= 70 ? 'em ampla maioria' : 'pela maioria'
   const valueLabels = winner.values.map((v) => VALUE_LABELS[v]).join(', ')
 
-  return `A turma decidiu ${closeness} (${pct}% dos votos): "${winner.label}" — priorizando ${valueLabels}.`
+  return `A turma decidiu ${closeness} (${pct}% dos votos): "${winner.label}" Essa escolha prioriza ${valueLabels}.`
 }
 
 export function generatePrinciples(votes: Vote[]): GeneratedPrinciple[] {

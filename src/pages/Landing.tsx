@@ -20,13 +20,13 @@ export default function Landing() {
       </header>
 
       <main className="relative z-10 max-w-3xl mx-auto px-6 pt-20 pb-16 text-center animate-rise">
-        <Pill tone="cyan">Simulação — TalentFlow / HireLens</Pill>
+        <Pill tone="cyan">Simulação: TalentFlow / HireLens</Pill>
         <h1 className="mt-6 font-[var(--font-display)] text-4xl md:text-6xl font-semibold leading-[1.05] tracking-tight text-mist-100">
           Você deixaria uma <span className="text-cyan-400">IA</span> decidir
           <br /> quem merece uma oportunidade?
         </h1>
         <p className="mt-6 text-mist-300 text-lg leading-relaxed max-w-xl mx-auto">
-          80.000 candidatos. 3.000 vagas. Um algoritmo de pontuação chamado HireLens — e uma auditoria que encontrou
+          80.000 candidatos. 3.000 vagas. Um algoritmo de pontuação chamado HireLens, e uma auditoria que encontrou
           indícios de viés. A turma vai decidir, dilema a dilema, o que a TalentFlow deve fazer.
         </p>
 
@@ -47,7 +47,7 @@ export default function Landing() {
           <Users size={20} className="text-cyan-400 mb-3" />
           <h3 className="font-semibold text-mist-100 mb-1">Decisão coletiva</h3>
           <p className="text-sm text-mist-400 leading-relaxed">
-            Cada participante vota pelo celular. Nenhuma resposta é "certa" — o que importa é qual valor a turma
+            Cada participante vota pelo celular. Nenhuma resposta é "certa": o que importa é qual valor a turma
             prioriza.
           </p>
         </Card>

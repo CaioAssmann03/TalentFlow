@@ -20,7 +20,7 @@ export const DILEMMAS: Dilemma[] = [
     options: [
       {
         id: 'a',
-        label: 'Manter o CEP no modelo — a correlação já foi validada estatisticamente e o ganho de precisão é real.',
+        label: 'Manter o CEP no modelo, já que a correlação já foi validada estatisticamente e o ganho de precisão é real.',
         values: ['eficiencia', 'automacao', 'precisao_estatistica'],
         principleIfWinner: {
           title: 'Princípio da Eficiência Estatística',
@@ -74,7 +74,7 @@ export const DILEMMAS: Dilemma[] = [
     options: [
       {
         id: 'a',
-        label: 'Sim — continuidade profissional é um indicador real de adaptação ao mercado de trabalho.',
+        label: 'Sim, porque continuidade profissional é um indicador real de adaptação ao mercado de trabalho.',
         values: ['eficiencia', 'automacao'],
         principleIfWinner: {
           title: 'Princípio da Continuidade',
@@ -83,16 +83,16 @@ export const DILEMMAS: Dilemma[] = [
       },
       {
         id: 'b',
-        label: 'Pode ser considerada, mas nunca sozinha — sempre combinada com outros fatores do currículo.',
+        label: 'Pode ser considerada, mas nunca sozinha, sempre combinada com outros fatores do currículo.',
         values: ['eficiencia', 'contexto_individual', 'igualdade'],
         principleIfWinner: {
           title: 'Princípio do Contexto Combinado',
-          text: 'Nenhuma pausa profissional pode, isoladamente, determinar a eliminação de um candidato — ela deve ser lida junto de outros fatores.',
+          text: 'Nenhuma pausa profissional pode, isoladamente, determinar a eliminação de um candidato, pois ela deve ser lida junto de outros fatores.',
         },
       },
       {
         id: 'c',
-        label: 'Não deve influenciar a pontuação — uma pausa na trajetória não diz nada sobre competência.',
+        label: 'Não deve influenciar a pontuação, pois uma pausa na trajetória não diz nada sobre competência.',
         values: ['justica', 'contexto_individual', 'igualdade', 'autonomia'],
         principleIfWinner: {
           title: 'Princípio da Não Discriminação por Trajetória',
@@ -128,7 +128,7 @@ export const DILEMMAS: Dilemma[] = [
     options: [
       {
         id: 'a',
-        label: 'Sim, se comunicação for diretamente relevante para a vaga — nunca por sotaque em si.',
+        label: 'Sim, se comunicação for diretamente relevante para a vaga, mas nunca por sotaque em si.',
         values: ['eficiencia', 'competencia'],
         principleIfWinner: {
           title: 'Princípio da Relevância Funcional',
@@ -177,12 +177,12 @@ export const DILEMMAS: Dilemma[] = [
     conflict: {
       label: 'AUTOMAÇÃO × SUPERVISÃO HUMANA',
       description:
-        'Um corte numérico rígido é simples de aplicar em escala e trata todos os candidatos da mesma forma. Mas pontuações próximas ao limite carregam margem de erro do próprio modelo — e um ponto pode decidir uma vida.',
+        'Um corte numérico rígido é simples de aplicar em escala e trata todos os candidatos da mesma forma. Mas pontuações próximas ao limite carregam margem de erro do próprio modelo, e um ponto pode decidir uma vida.',
     },
     options: [
       {
         id: 'a',
-        label: 'Sim — o critério precisa ser objetivo e igual para todos, sem exceções manuais.',
+        label: 'Sim, porque o critério precisa ser objetivo e igual para todos, sem exceções manuais.',
         values: ['automacao', 'eficiencia'],
         principleIfWinner: {
           title: 'Princípio do Corte Objetivo',
@@ -191,7 +191,7 @@ export const DILEMMAS: Dilemma[] = [
       },
       {
         id: 'b',
-        label: 'Não — notas próximas do limite devem passar por revisão humana antes da eliminação.',
+        label: 'Não, porque notas próximas do limite devem passar por revisão humana antes da eliminação.',
         values: ['supervisao_humana', 'justica'],
         principleIfWinner: {
           title: 'Princípio da Supervisão Humana',
@@ -209,7 +209,7 @@ export const DILEMMAS: Dilemma[] = [
       },
       {
         id: 'd',
-        label: 'Eliminar o corte automático — nenhuma eliminação definitiva deve depender só de um número.',
+        label: 'Eliminar o corte automático, porque nenhuma eliminação definitiva deve depender só de um número.',
         values: ['seguranca', 'justica', 'supervisao_humana'],
         principleIfWinner: {
           title: 'Princípio do Fim do Corte Automático',
@@ -231,12 +231,12 @@ export const DILEMMAS: Dilemma[] = [
     conflict: {
       label: 'TRANSPARÊNCIA × SEGREDO COMERCIAL',
       description:
-        'Proteger o modelo protege o investimento e a competitividade da empresa. Mas sem nenhuma explicação, um candidato eliminado não tem como identificar — nem contestar — uma possível injustiça.',
+        'Proteger o modelo protege o investimento e a competitividade da empresa. Mas sem nenhuma explicação, um candidato eliminado não tem como identificar, nem contestar, uma possível injustiça.',
     },
     options: [
       {
         id: 'a',
-        label: 'Não revelar nada — o modelo é propriedade intelectual e parte da vantagem competitiva da empresa.',
+        label: 'Não revelar nada, porque o modelo é propriedade intelectual e parte da vantagem competitiva da empresa.',
         values: ['propriedade_intelectual'],
         principleIfWinner: {
           title: 'Princípio da Confidencialidade',
@@ -278,7 +278,7 @@ export const DILEMMAS: Dilemma[] = [
     code: 'DILEMA 06',
     title: 'Decisão Final',
     situation: [
-      'A empresa precisa definir, de uma vez por todas, quais decisões o HireLens poderá tomar sozinho — e quais exigem sempre um ser humano.',
+      'A empresa precisa definir, de uma vez por todas, quais decisões o HireLens poderá tomar sozinho, e quais exigem sempre um ser humano.',
     ],
     question: 'Qual deve ser o limite da automação?',
     conflict: {
@@ -289,7 +289,7 @@ export const DILEMMAS: Dilemma[] = [
     options: [
       {
         id: 'a',
-        label: 'A IA pode eliminar candidatos sozinha — é mais rápido e barato operar em larga escala assim.',
+        label: 'A IA pode eliminar candidatos sozinha, porque é mais rápido e barato operar em larga escala assim.',
         values: ['automacao', 'eficiencia'],
         principleIfWinner: {
           title: 'Princípio da Autonomia do Sistema',

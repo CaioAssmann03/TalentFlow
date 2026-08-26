@@ -91,7 +91,7 @@ export const BASE_ARTICLES: BaseArticle[] = [
     strongText:
       'Variáveis que possam funcionar como proxies de características sensíveis deverão ser monitoradas e auditadas de forma contínua, com poder de suspender o modelo em caso de viés confirmado.',
     moderateText:
-      'Auditorias acontecem em intervalos regulares, mas sem poder automático de suspender o sistema — apenas de recomendar ajustes.',
+      'Auditorias acontecem em intervalos regulares, mas sem poder automático de suspender o sistema, apenas de recomendar ajustes.',
     weakText:
       'Auditorias ocorrem apenas eventualmente, sem poder automático de suspender o sistema diante de indícios de viés.',
   },

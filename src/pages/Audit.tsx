@@ -28,7 +28,7 @@ export default function Audit() {
           <FlaskConical className="text-cyan-400" size={28} /> Testar o HireLens
         </h1>
         <p className="mt-2 text-mist-300 max-w-xl leading-relaxed">
-          Insira dois candidatos fictícios e veja como o modelo simulado do HireLens pontua cada um — e se a
+          Insira dois candidatos fictícios e veja como o modelo simulado do HireLens pontua cada um, e se a
           diferença de pontuação pode ser explicada por características profissionais.
         </p>
 
@@ -82,7 +82,7 @@ export default function Audit() {
           <p className="text-xs text-mist-400 mt-4 leading-relaxed">
             {result.explainedByProfessionalFactors
               ? 'A diferença pode estar relacionada a uma característica profissional relevante (experiência, formação ou qualidade da resposta).'
-              : 'A diferença de pontuação não parece ser explicada pelas características profissionais apresentadas — apenas a região (CEP) difere entre os candidatos.'}
+              : 'A diferença de pontuação não parece ser explicada pelas características profissionais apresentadas. Apenas a região (CEP) difere entre os candidatos.'}
           </p>
         </Card>
 

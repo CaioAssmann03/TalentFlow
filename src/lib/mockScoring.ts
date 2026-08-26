@@ -66,7 +66,7 @@ export function auditCandidates(a: CandidateInput, b: CandidateInput): AuditResu
       ? 'Suspender a variável de região e auditar o modelo antes de continuar utilizando esta pontuação.'
       : riskLevel === 'atencao'
       ? 'Sinalizar para revisão humana antes de decidir com base nesta diferença.'
-      : 'Nenhuma ação adicional necessária — a diferença parece explicada por características profissionais.'
+      : 'Nenhuma ação adicional necessária. A diferença parece explicada por características profissionais.'
 
   return { scoreA, scoreB, diff, explainedByProfessionalFactors, suspiciousVariable, riskLevel, recommendation }
 }
