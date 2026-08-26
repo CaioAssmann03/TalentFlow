@@ -31,6 +31,22 @@ export function getWinningOption(dilemma: Dilemma, tally: DilemmaTally) {
 }
 
 /**
+ * All options tied for the most votes. Has more than one entry only when
+ * there's a real tie (two or more options with the same, nonzero, top
+ * count) — with no votes cast yet it falls back to just the first option,
+ * same as getWinningOption.
+ */
+export function getWinningOptions(dilemma: Dilemma, tally: DilemmaTally) {
+  const max = Math.max(...dilemma.options.map((o) => tally.perOption[o.id] || 0))
+  if (max === 0) return [dilemma.options[0]]
+  return dilemma.options.filter((o) => (tally.perOption[o.id] || 0) === max)
+}
+
+export function isDilemmaTied(dilemma: Dilemma, tally: DilemmaTally): boolean {
+  return tally.totalVotes > 0 && getWinningOptions(dilemma, tally).length > 1
+}
+
+/**
  * Computes a 0-100 "priority score" for every ethical value based on how
  * often that value appeared among the options the turma actually chose,
  * weighted by how many votes each option received (not just the winner).
@@ -94,7 +110,14 @@ export function getMostContestedDilemma(votes: Vote[]): Dilemma {
 export function describeDilemmaResult(dilemma: Dilemma, tally: DilemmaTally): string {
   if (tally.totalVotes === 0) return 'Ninguém votou neste dilema.'
 
-  const winner = getWinningOption(dilemma, tally)
+  const winners = getWinningOptions(dilemma, tally)
+  if (winners.length > 1) {
+    const pct = tally.perOptionPct[winners[0].id]
+    const letters = winners.map((o) => o.id.toUpperCase()).join(', ')
+    return `Empate entre as alternativas ${letters}, cada uma com ${pct}% dos votos. A turma não chegou a uma maioria neste dilema.`
+  }
+
+  const winner = winners[0]
   const pct = tally.perOptionPct[winner.id]
   const sortedPct = dilemma.options.map((o) => tally.perOptionPct[o.id]).sort((a, b) => b - a)
   const runnerUpPct = sortedPct[1] || 0

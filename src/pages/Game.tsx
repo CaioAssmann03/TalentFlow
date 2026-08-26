@@ -16,7 +16,7 @@ import {
 } from '../lib/db'
 import { getStoredParticipant, hasVotedLocally, markVotedLocally } from '../lib/localState'
 import { getDilemmaByIndex } from '../data/dilemmas'
-import { tallyDilemma, describeDilemmaResult } from '../lib/ethicsEngine'
+import { tallyDilemma, describeDilemmaResult, isDilemmaTied } from '../lib/ethicsEngine'
 
 export default function Game() {
   const { code } = useParams<{ code: string }>()
@@ -153,7 +153,10 @@ export default function Game() {
 
       <main className="flex-1 max-w-2xl w-full mx-auto px-6 py-8">
         <div className="flex items-center justify-between mb-4">
-          <Pill tone="cyan">{dilemma.code}</Pill>
+          <div className="flex items-center gap-2">
+            <Pill tone="cyan">{dilemma.code}</Pill>
+            {showResults && isDilemmaTied(dilemma, tally) && <Pill tone="amber">Empate</Pill>}
+          </div>
           <span className="text-xs text-mist-400 font-[var(--font-mono)]">
             {session.current_dilemma_index + 1} / 6
           </span>
@@ -225,7 +228,13 @@ export default function Game() {
 
         {showResults && (
           <div className="space-y-3">
-            <p className="text-sm text-cyan-400 bg-cyan-500/5 border border-cyan-500/20 rounded-xl px-4 py-3 leading-relaxed">
+            <p
+              className={`text-sm rounded-xl px-4 py-3 leading-relaxed border ${
+                isDilemmaTied(dilemma, tally)
+                  ? 'text-signal-amber bg-signal-amber/5 border-signal-amber/20'
+                  : 'text-cyan-400 bg-cyan-500/5 border-cyan-500/20'
+              }`}
+            >
               {describeDilemmaResult(dilemma, tally)}
             </p>
             {dilemma.options.map((opt) => {
