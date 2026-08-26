@@ -20,7 +20,7 @@ export const DILEMMAS: Dilemma[] = [
     options: [
       {
         id: 'a',
-        label: 'Manter o modelo, pois o CEP pode ter valor estatístico.',
+        label: 'Manter o CEP no modelo — a correlação já foi validada estatisticamente e o ganho de precisão é real.',
         values: ['eficiencia', 'automacao', 'precisao_estatistica'],
         principleIfWinner: {
           title: 'Princípio da Eficiência Estatística',
@@ -29,7 +29,7 @@ export const DILEMMAS: Dilemma[] = [
       },
       {
         id: 'b',
-        label: 'Continuar utilizando, mas exigir revisão humana.',
+        label: 'Continuar usando o CEP, mas exigir revisão humana antes de qualquer eliminação baseada nele.',
         values: ['eficiencia', 'supervisao_humana', 'justica'],
         principleIfWinner: {
           title: 'Princípio da Revisão Assistida',
@@ -38,7 +38,7 @@ export const DILEMMAS: Dilemma[] = [
       },
       {
         id: 'c',
-        label: 'Suspender o uso do CEP e auditar o modelo.',
+        label: 'Suspender o uso do CEP e auditar o modelo antes de voltar a usá-lo.',
         values: ['justica', 'transparencia', 'eficiencia'],
         principleIfWinner: {
           title: 'Princípio da Auditoria',
@@ -47,7 +47,7 @@ export const DILEMMAS: Dilemma[] = [
       },
       {
         id: 'd',
-        label: 'Suspender todo o HireLens até entender o problema.',
+        label: 'Suspender todo o HireLens até entender o problema, mesmo que isso atrase toda a contratação.',
         values: ['seguranca', 'justica', 'automacao', 'eficiencia'],
         principleIfWinner: {
           title: 'Princípio da Precaução',
@@ -74,7 +74,7 @@ export const DILEMMAS: Dilemma[] = [
     options: [
       {
         id: 'a',
-        label: 'Sim, a pausa deve reduzir a pontuação.',
+        label: 'Sim — continuidade profissional é um indicador real de adaptação ao mercado de trabalho.',
         values: ['eficiencia', 'automacao'],
         principleIfWinner: {
           title: 'Princípio da Continuidade',
@@ -83,7 +83,7 @@ export const DILEMMAS: Dilemma[] = [
       },
       {
         id: 'b',
-        label: 'Pode ser considerada, mas nunca sozinha.',
+        label: 'Pode ser considerada, mas nunca sozinha — sempre combinada com outros fatores do currículo.',
         values: ['eficiencia', 'contexto_individual', 'igualdade'],
         principleIfWinner: {
           title: 'Princípio do Contexto Combinado',
@@ -92,7 +92,7 @@ export const DILEMMAS: Dilemma[] = [
       },
       {
         id: 'c',
-        label: 'Não deve influenciar a pontuação.',
+        label: 'Não deve influenciar a pontuação — uma pausa na trajetória não diz nada sobre competência.',
         values: ['justica', 'contexto_individual', 'igualdade', 'autonomia'],
         principleIfWinner: {
           title: 'Princípio da Não Discriminação por Trajetória',
@@ -101,7 +101,7 @@ export const DILEMMAS: Dilemma[] = [
       },
       {
         id: 'd',
-        label: 'Deve gerar revisão humana.',
+        label: 'Deve sempre gerar revisão humana antes de reduzir a pontuação de alguém.',
         values: ['supervisao_humana', 'contexto_individual', 'justica'],
         principleIfWinner: {
           title: 'Princípio da Revisão Contextual',
@@ -128,7 +128,7 @@ export const DILEMMAS: Dilemma[] = [
     options: [
       {
         id: 'a',
-        label: 'Sim, se comunicação for importante para a vaga.',
+        label: 'Sim, se comunicação for diretamente relevante para a vaga — nunca por sotaque em si.',
         values: ['eficiencia', 'competencia'],
         principleIfWinner: {
           title: 'Princípio da Relevância Funcional',
@@ -137,7 +137,7 @@ export const DILEMMAS: Dilemma[] = [
       },
       {
         id: 'b',
-        label: 'Sim, mas somente depois de revisão humana.',
+        label: 'Sim, mas somente depois de confirmação humana sobre o que realmente foi avaliado.',
         values: ['supervisao_humana', 'competencia', 'diversidade'],
         principleIfWinner: {
           title: 'Princípio da Revisão de Linguagem',
@@ -146,7 +146,7 @@ export const DILEMMAS: Dilemma[] = [
       },
       {
         id: 'c',
-        label: 'Sotaque não deve influenciar a avaliação profissional.',
+        label: 'Sotaque não deve influenciar a avaliação profissional em nenhuma vaga.',
         values: ['igualdade', 'diversidade', 'justica'],
         principleIfWinner: {
           title: 'Princípio da Não Discriminação Linguística',
@@ -155,7 +155,7 @@ export const DILEMMAS: Dilemma[] = [
       },
       {
         id: 'd',
-        label: 'A análise de linguagem deve ser removida do processo.',
+        label: 'A análise automática de linguagem deve ser removida até haver garantias contra viés regional.',
         values: ['diversidade', 'igualdade', 'seguranca'],
         principleIfWinner: {
           title: 'Princípio da Exclusão de Variáveis de Risco',
@@ -182,7 +182,7 @@ export const DILEMMAS: Dilemma[] = [
     options: [
       {
         id: 'a',
-        label: 'Sim, o critério precisa ser objetivo.',
+        label: 'Sim — o critério precisa ser objetivo e igual para todos, sem exceções manuais.',
         values: ['automacao', 'eficiencia'],
         principleIfWinner: {
           title: 'Princípio do Corte Objetivo',
@@ -191,7 +191,7 @@ export const DILEMMAS: Dilemma[] = [
       },
       {
         id: 'b',
-        label: 'Não, notas próximas do limite devem passar por revisão humana.',
+        label: 'Não — notas próximas do limite devem passar por revisão humana antes da eliminação.',
         values: ['supervisao_humana', 'justica'],
         principleIfWinner: {
           title: 'Princípio da Supervisão Humana',
@@ -200,7 +200,7 @@ export const DILEMMAS: Dilemma[] = [
       },
       {
         id: 'c',
-        label: 'Criar uma margem de tolerância.',
+        label: 'Criar uma margem de tolerância que reconheça a margem de erro do próprio modelo.',
         values: ['justica', 'precisao_estatistica', 'eficiencia'],
         principleIfWinner: {
           title: 'Princípio da Margem de Erro',
@@ -209,7 +209,7 @@ export const DILEMMAS: Dilemma[] = [
       },
       {
         id: 'd',
-        label: 'Eliminar o sistema de pontuação com corte automático.',
+        label: 'Eliminar o corte automático — nenhuma eliminação definitiva deve depender só de um número.',
         values: ['seguranca', 'justica', 'supervisao_humana'],
         principleIfWinner: {
           title: 'Princípio do Fim do Corte Automático',
@@ -236,7 +236,7 @@ export const DILEMMAS: Dilemma[] = [
     options: [
       {
         id: 'a',
-        label: 'Não revelar nada.',
+        label: 'Não revelar nada — o modelo é propriedade intelectual e parte da vantagem competitiva da empresa.',
         values: ['propriedade_intelectual'],
         principleIfWinner: {
           title: 'Princípio da Confidencialidade',
@@ -245,7 +245,7 @@ export const DILEMMAS: Dilemma[] = [
       },
       {
         id: 'b',
-        label: 'Explicar os principais fatores sem revelar o modelo completo.',
+        label: 'Explicar os principais fatores, sem revelar o modelo completo.',
         values: ['transparencia', 'direito_a_explicacao', 'propriedade_intelectual'],
         principleIfWinner: {
           title: 'Princípio da Explicabilidade',
@@ -254,7 +254,7 @@ export const DILEMMAS: Dilemma[] = [
       },
       {
         id: 'c',
-        label: 'Revelar toda a lógica utilizada.',
+        label: 'Revelar toda a lógica utilizada, mesmo com risco de exposição comercial.',
         values: ['transparencia', 'direito_a_explicacao'],
         principleIfWinner: {
           title: 'Princípio da Transparência Total',
@@ -263,7 +263,7 @@ export const DILEMMAS: Dilemma[] = [
       },
       {
         id: 'd',
-        label: 'Permitir auditoria independente, mas preservar o código-fonte.',
+        label: 'Permitir auditoria independente, preservando o sigilo do código-fonte perante o público.',
         values: ['transparencia', 'privacidade', 'propriedade_intelectual'],
         principleIfWinner: {
           title: 'Princípio da Auditoria Independente',
@@ -289,7 +289,7 @@ export const DILEMMAS: Dilemma[] = [
     options: [
       {
         id: 'a',
-        label: 'A IA pode eliminar candidatos.',
+        label: 'A IA pode eliminar candidatos sozinha — é mais rápido e barato operar em larga escala assim.',
         values: ['automacao', 'eficiencia'],
         principleIfWinner: {
           title: 'Princípio da Autonomia do Sistema',
@@ -298,7 +298,7 @@ export const DILEMMAS: Dilemma[] = [
       },
       {
         id: 'b',
-        label: 'A IA pode recomendar, mas não eliminar definitivamente.',
+        label: 'A IA pode recomendar, mas nunca eliminar definitivamente sem confirmação humana.',
         values: ['automacao', 'supervisao_humana', 'responsabilidade'],
         principleIfWinner: {
           title: 'Princípio da Recomendação Não Vinculante',
@@ -307,7 +307,7 @@ export const DILEMMAS: Dilemma[] = [
       },
       {
         id: 'c',
-        label: 'A IA pode organizar e pontuar, mas decisões relevantes precisam de humanos.',
+        label: 'A IA pode organizar e pontuar, mas decisões relevantes sempre exigem um humano responsável.',
         values: ['justica', 'eficiencia', 'supervisao_humana'],
         principleIfWinner: {
           title: 'Princípio do Limite da Automação',
@@ -316,7 +316,7 @@ export const DILEMMAS: Dilemma[] = [
       },
       {
         id: 'd',
-        label: 'A IA não deve participar de decisões de contratação.',
+        label: 'A IA não deve participar de nenhuma etapa das decisões de contratação.',
         values: ['seguranca', 'justica', 'responsabilidade'],
         principleIfWinner: {
           title: 'Princípio da Exclusão da IA',

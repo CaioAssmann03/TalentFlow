@@ -29,7 +29,7 @@ import {
 } from '../lib/db'
 import { isAdminAuthed } from '../lib/localState'
 import { getDilemmaByIndex, TOTAL_DILEMMAS } from '../data/dilemmas'
-import { tallyDilemma } from '../lib/ethicsEngine'
+import { tallyDilemma, describeDilemmaResult } from '../lib/ethicsEngine'
 
 const STATUS_LABEL: Record<SessionStatus, string> = {
   lobby: 'Aguardando início',
@@ -181,6 +181,11 @@ export default function AdminDashboard() {
                 <p className="text-xs text-mist-400 mt-3">
                   {tally?.totalVotes || 0} votos recebidos até agora (oculto dos participantes e da tela até a
                   revelação).
+                </p>
+              )}
+              {session.status === 'revealed' && tally && (
+                <p className="text-sm text-cyan-400 bg-cyan-500/5 border border-cyan-500/20 rounded-xl px-4 py-3 mt-4 leading-relaxed">
+                  {describeDilemmaResult(dilemma, tally)}
                 </p>
               )}
             </Card>
@@ -345,9 +350,16 @@ function PresentationView({
             })}
           </div>
           {session.status === 'revealed' && (
-            <p className="mt-6 text-mist-400 font-[var(--font-mono)] flex items-center gap-2 text-sm md:text-base">
-              <CheckCircle2 size={18} className="text-signal-green shrink-0" /> {tally?.totalVotes || 0} votos registrados
-            </p>
+            <>
+              <p className="mt-6 text-mist-400 font-[var(--font-mono)] flex items-center gap-2 text-sm md:text-base">
+                <CheckCircle2 size={18} className="text-signal-green shrink-0" /> {tally?.totalVotes || 0} votos registrados
+              </p>
+              {tally && (
+                <p className="mt-3 text-base md:text-lg text-cyan-400 leading-relaxed">
+                  {describeDilemmaResult(dilemma, tally)}
+                </p>
+              )}
+            </>
           )}
         </div>
       )}

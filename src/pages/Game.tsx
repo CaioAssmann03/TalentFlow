@@ -16,7 +16,7 @@ import {
 } from '../lib/db'
 import { getStoredParticipant, hasVotedLocally, markVotedLocally } from '../lib/localState'
 import { getDilemmaByIndex } from '../data/dilemmas'
-import { tallyDilemma } from '../lib/ethicsEngine'
+import { tallyDilemma, describeDilemmaResult } from '../lib/ethicsEngine'
 
 export default function Game() {
   const { code } = useParams<{ code: string }>()
@@ -225,6 +225,9 @@ export default function Game() {
 
         {showResults && (
           <div className="space-y-3">
+            <p className="text-sm text-cyan-400 bg-cyan-500/5 border border-cyan-500/20 rounded-xl px-4 py-3 leading-relaxed">
+              {describeDilemmaResult(dilemma, tally)}
+            </p>
             {dilemma.options.map((opt) => {
               const max = Math.max(...Object.values(tally.perOption))
               const isLeading = tally.perOption[opt.id] === max && max > 0
