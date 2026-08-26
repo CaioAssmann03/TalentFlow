@@ -199,10 +199,23 @@ function computeValueOpportunity(): Record<EthicalValue, number> {
   return result
 }
 
+// Values offered in only 1-2 of the 24 option slots across the whole game
+// (autonomia, privacidade...) barely had a real chance to be picked, so
+// they'd dominate "valores sacrificados" every single session regardless
+// of what the turma actually voted. Values with at least this many chances
+// are preferred candidates; rare ones only fill in if not enough qualify.
+const MIN_FAIR_OPPORTUNITY = 3
+
 export function bottomValues(scores: Record<EthicalValue, number>, n = 3) {
   const opportunity = computeValueOpportunity()
-  return (Object.entries(scores) as [EthicalValue, number][])
-    .sort((a, b) => a[1] - b[1] || opportunity[b[0]] - opportunity[a[0]])
+  const byScore = (a: [EthicalValue, number], b: [EthicalValue, number]) =>
+    a[1] - b[1] || opportunity[b[0]] - opportunity[a[0]]
+
+  const entries = Object.entries(scores) as [EthicalValue, number][]
+  const fair = entries.filter(([v]) => opportunity[v] >= MIN_FAIR_OPPORTUNITY).sort(byScore)
+  const rare = entries.filter(([v]) => opportunity[v] < MIN_FAIR_OPPORTUNITY).sort(byScore)
+
+  return [...fair, ...rare]
     .slice(0, n)
     .map(([value, score]) => ({ value, score, label: VALUE_LABELS[value] }))
 }
