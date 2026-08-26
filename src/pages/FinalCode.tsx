@@ -9,10 +9,10 @@ import {
   computeValueScores,
   generateEthicsCode,
   generatePrinciples,
+  getMostContestedDilemma,
   topValues,
   bottomValues,
 } from '../lib/ethicsEngine'
-import { DILEMMAS } from '../data/dilemmas'
 
 export default function FinalCode() {
   const { code } = useParams<{ code: string }>()
@@ -43,8 +43,9 @@ export default function FinalCode() {
   const verdict = buildFinalVerdict(votes)
 
   // Main conflict: pick the dilemma with the closest vote split as the
-  // headline "hard choice" to illustrate, defaulting to eficiência × justiça.
-  const highlightDilemma = DILEMMAS[0]
+  // headline "hard choice" to illustrate, defaulting to eficiência × justiça
+  // when nothing was voted on yet.
+  const highlightDilemma = getMostContestedDilemma(votes)
 
   return (
     <div className="min-h-screen bg-ink-950">

@@ -63,6 +63,29 @@ export function computeValueScores(votes: Vote[]): Record<EthicalValue, number> 
   return scores
 }
 
+/**
+ * Picks the dilemma where the turma was most divided (smallest margin
+ * between the top two options) to headline as the final screen's "hard
+ * choice". Falls back to the first dilemma if nothing was voted on yet.
+ */
+export function getMostContestedDilemma(votes: Vote[]): Dilemma {
+  let best: Dilemma = DILEMMAS[0]
+  let bestMargin = Infinity
+  let bestTotal = 0
+  for (const dilemma of DILEMMAS) {
+    const tally = tallyDilemma(dilemma, votes)
+    if (tally.totalVotes === 0) continue
+    const counts = dilemma.options.map((o) => tally.perOption[o.id] || 0).sort((a, b) => b - a)
+    const margin = counts[0] - (counts[1] || 0)
+    if (margin < bestMargin || (margin === bestMargin && tally.totalVotes > bestTotal)) {
+      bestMargin = margin
+      bestTotal = tally.totalVotes
+      best = dilemma
+    }
+  }
+  return best
+}
+
 export function generatePrinciples(votes: Vote[]): GeneratedPrinciple[] {
   return DILEMMAS.map((dilemma) => {
     const tally = tallyDilemma(dilemma, votes)

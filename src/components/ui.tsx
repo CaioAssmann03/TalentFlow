@@ -119,7 +119,7 @@ export function OptionBar({ letter, label, pct, count, isLeading }: { letter: st
         </div>
         <span className="font-[var(--font-mono)] text-sm text-cyan-400 shrink-0">{pct}%</span>
       </div>
-      <div className="h-1.5 w-full rounded-full bg-ink-700 overflow-hidden ml-6">
+      <div className="h-1.5 w-[calc(100%-1.5rem)] rounded-full bg-ink-700 overflow-hidden ml-6">
         <div
           className={`h-full rounded-full transition-all duration-700 ease-out ${isLeading ? 'bg-cyan-400' : 'bg-ink-600'}`}
           style={{ width: `${Math.max(1, pct)}%` }}
