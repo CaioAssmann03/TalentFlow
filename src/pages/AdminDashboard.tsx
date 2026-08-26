@@ -29,7 +29,7 @@ import {
 } from '../lib/db'
 import { isAdminAuthed } from '../lib/localState'
 import { getDilemmaByIndex, TOTAL_DILEMMAS } from '../data/dilemmas'
-import { tallyDilemma, describeDilemmaResult } from '../lib/ethicsEngine'
+import { tallyDilemma, describeDilemmaResult, isDilemmaTied } from '../lib/ethicsEngine'
 
 const STATUS_LABEL: Record<SessionStatus, string> = {
   lobby: 'Aguardando início',
@@ -148,7 +148,12 @@ export default function AdminDashboard() {
           {dilemma ? (
             <Card className="p-6">
               <div className="flex items-center justify-between mb-3">
-                <Pill tone="cyan">{dilemma.code}</Pill>
+                <div className="flex items-center gap-2">
+                  <Pill tone="cyan">{dilemma.code}</Pill>
+                  {session.status === 'revealed' && tally && isDilemmaTied(dilemma, tally) && (
+                    <Pill tone="amber">Empate</Pill>
+                  )}
+                </div>
                 <span className="text-xs text-mist-400 font-[var(--font-mono)]">
                   {session.current_dilemma_index + 1} / {TOTAL_DILEMMAS}
                 </span>
@@ -184,7 +189,13 @@ export default function AdminDashboard() {
                 </p>
               )}
               {session.status === 'revealed' && tally && (
-                <p className="text-sm text-cyan-400 bg-cyan-500/5 border border-cyan-500/20 rounded-xl px-4 py-3 mt-4 leading-relaxed">
+                <p
+                  className={`text-sm rounded-xl px-4 py-3 mt-4 leading-relaxed border ${
+                    isDilemmaTied(dilemma, tally)
+                      ? 'text-signal-amber bg-signal-amber/5 border-signal-amber/20'
+                      : 'text-cyan-400 bg-cyan-500/5 border-cyan-500/20'
+                  }`}
+                >
                   {describeDilemmaResult(dilemma, tally)}
                 </p>
               )}
@@ -307,7 +318,12 @@ function PresentationView({
 
       {dilemma && (
         <div className="flex-1 max-w-4xl mx-auto w-full flex flex-col justify-center">
-          <Pill tone="cyan">{dilemma.code}</Pill>
+          <div className="flex items-center gap-2">
+            <Pill tone="cyan">{dilemma.code}</Pill>
+            {session.status === 'revealed' && tally && isDilemmaTied(dilemma, tally) && (
+              <Pill tone="amber">Empate</Pill>
+            )}
+          </div>
           <h1 className="font-[var(--font-display)] text-2xl sm:text-3xl md:text-5xl font-semibold text-mist-100 mt-4 mb-4 md:mb-6">
             {dilemma.title}
           </h1>
@@ -355,7 +371,11 @@ function PresentationView({
                 <CheckCircle2 size={18} className="text-signal-green shrink-0" /> {tally?.totalVotes || 0} votos registrados
               </p>
               {tally && (
-                <p className="mt-3 text-base md:text-lg text-cyan-400 leading-relaxed">
+                <p
+                  className={`mt-3 text-base md:text-lg leading-relaxed ${
+                    isDilemmaTied(dilemma, tally) ? 'text-signal-amber' : 'text-cyan-400'
+                  }`}
+                >
                   {describeDilemmaResult(dilemma, tally)}
                 </p>
               )}
